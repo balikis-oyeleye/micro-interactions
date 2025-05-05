@@ -72,19 +72,27 @@ const GardenAstronaut = () => {
             <MdMenu className="text-white" size={26} />
           </button>
           <nav className="hidden sm:block">
-            <ul className="flex gap-4">
+            <ul className="flex gap-5">
               {navLinks.map((link) => (
                 <li className="text-white uppercase" key={link}>
-                  <a href="#">{link}</a>
+                  <a
+                    href="#"
+                    className="relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2.5px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+                  >
+                    {link}
+                  </a>
                 </li>
               ))}
             </ul>
           </nav>
           <div className="flex gap-4 text-white pr-6">
-            <button aria-label="User profile">
+            <button aria-label="User profile" className="cursor-pointer">
               <FaRegUserCircle size={20} />
             </button>
-            <button className="relative" aria-label="Shopping bag with 2 items">
+            <button
+              className="relative cursor-pointer"
+              aria-label="Shopping bag with 2 items"
+            >
               <BsBag size={20} />
               <span className="bg-red-500 text-white w-4 h-4 flex items-center justify-center rounded-full absolute -top-2 -right-2 text-[10px]">
                 2
