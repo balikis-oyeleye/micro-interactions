@@ -11,20 +11,20 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as GardenAstronautImport } from './routes/garden-astronaut'
 import { Route as IndexImport } from './routes/index'
-import { Route as part1GardenAstronautImport } from './routes/(part-1)/garden-astronaut'
 
 // Create/Update Routes
+
+const GardenAstronautRoute = GardenAstronautImport.update({
+  id: '/garden-astronaut',
+  path: '/garden-astronaut',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const part1GardenAstronautRoute = part1GardenAstronautImport.update({
-  id: '/(part-1)/garden-astronaut',
-  path: '/garden-astronaut',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,11 +39,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/(part-1)/garden-astronaut': {
-      id: '/(part-1)/garden-astronaut'
+    '/garden-astronaut': {
+      id: '/garden-astronaut'
       path: '/garden-astronaut'
       fullPath: '/garden-astronaut'
-      preLoaderRoute: typeof part1GardenAstronautImport
+      preLoaderRoute: typeof GardenAstronautImport
       parentRoute: typeof rootRoute
     }
   }
@@ -53,18 +53,18 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/garden-astronaut': typeof part1GardenAstronautRoute
+  '/garden-astronaut': typeof GardenAstronautRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/garden-astronaut': typeof part1GardenAstronautRoute
+  '/garden-astronaut': typeof GardenAstronautRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/(part-1)/garden-astronaut': typeof part1GardenAstronautRoute
+  '/garden-astronaut': typeof GardenAstronautRoute
 }
 
 export interface FileRouteTypes {
@@ -72,18 +72,18 @@ export interface FileRouteTypes {
   fullPaths: '/' | '/garden-astronaut'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/garden-astronaut'
-  id: '__root__' | '/' | '/(part-1)/garden-astronaut'
+  id: '__root__' | '/' | '/garden-astronaut'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  part1GardenAstronautRoute: typeof part1GardenAstronautRoute
+  GardenAstronautRoute: typeof GardenAstronautRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  part1GardenAstronautRoute: part1GardenAstronautRoute,
+  GardenAstronautRoute: GardenAstronautRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,14 +97,14 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/(part-1)/garden-astronaut"
+        "/garden-astronaut"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/(part-1)/garden-astronaut": {
-      "filePath": "(part-1)/garden-astronaut.tsx"
+    "/garden-astronaut": {
+      "filePath": "garden-astronaut.tsx"
     }
   }
 }
