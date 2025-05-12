@@ -1,10 +1,25 @@
-export class TextHelper {
-  public static removeSpecialChars(text: string): string {
-    return text.replace(/[^a-zA-Z0-9 ]/g, " ").trim();
+export function TextHelper(text: string) {
+  return new _TextHelper(text);
+}
+
+class _TextHelper {
+  private text: string;
+
+  constructor(text: string) {
+    this.text = text;
   }
 
-  public static capitalize(text: string): string {
-    if (!text) return "";
-    return text.charAt(0).toUpperCase() + text.slice(1);
+  removeSpecialChars() {
+    this.text = this.text.replace(/[^a-zA-Z0-9 ]/g, " ").trim();
+    return this;
+  }
+
+  capitalize() {
+    this.text = this.text.charAt(0).toUpperCase() + this.text.slice(1);
+    return this;
+  }
+
+  getText() {
+    return this.text;
   }
 }
