@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as part1GardenAstronautImport } from './routes/(part-1)/garden-astronaut'
+import { Route as part1CardsCarouselImport } from './routes/(part-1)/cards-carousel'
 import { Route as part1CardStackingImport } from './routes/(part-1)/card-stacking'
 
 // Create/Update Routes
@@ -26,6 +27,12 @@ const IndexRoute = IndexImport.update({
 const part1GardenAstronautRoute = part1GardenAstronautImport.update({
   id: '/(part-1)/garden-astronaut',
   path: '/garden-astronaut',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const part1CardsCarouselRoute = part1CardsCarouselImport.update({
+  id: '/(part-1)/cards-carousel',
+  path: '/cards-carousel',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,6 +60,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof part1CardStackingImport
       parentRoute: typeof rootRoute
     }
+    '/(part-1)/cards-carousel': {
+      id: '/(part-1)/cards-carousel'
+      path: '/cards-carousel'
+      fullPath: '/cards-carousel'
+      preLoaderRoute: typeof part1CardsCarouselImport
+      parentRoute: typeof rootRoute
+    }
     '/(part-1)/garden-astronaut': {
       id: '/(part-1)/garden-astronaut'
       path: '/garden-astronaut'
@@ -68,12 +82,14 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/card-stacking': typeof part1CardStackingRoute
+  '/cards-carousel': typeof part1CardsCarouselRoute
   '/garden-astronaut': typeof part1GardenAstronautRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/card-stacking': typeof part1CardStackingRoute
+  '/cards-carousel': typeof part1CardsCarouselRoute
   '/garden-astronaut': typeof part1GardenAstronautRoute
 }
 
@@ -81,18 +97,20 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/(part-1)/card-stacking': typeof part1CardStackingRoute
+  '/(part-1)/cards-carousel': typeof part1CardsCarouselRoute
   '/(part-1)/garden-astronaut': typeof part1GardenAstronautRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/card-stacking' | '/garden-astronaut'
+  fullPaths: '/' | '/card-stacking' | '/cards-carousel' | '/garden-astronaut'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/card-stacking' | '/garden-astronaut'
+  to: '/' | '/card-stacking' | '/cards-carousel' | '/garden-astronaut'
   id:
     | '__root__'
     | '/'
     | '/(part-1)/card-stacking'
+    | '/(part-1)/cards-carousel'
     | '/(part-1)/garden-astronaut'
   fileRoutesById: FileRoutesById
 }
@@ -100,12 +118,14 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   part1CardStackingRoute: typeof part1CardStackingRoute
+  part1CardsCarouselRoute: typeof part1CardsCarouselRoute
   part1GardenAstronautRoute: typeof part1GardenAstronautRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   part1CardStackingRoute: part1CardStackingRoute,
+  part1CardsCarouselRoute: part1CardsCarouselRoute,
   part1GardenAstronautRoute: part1GardenAstronautRoute,
 }
 
@@ -121,6 +141,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/(part-1)/card-stacking",
+        "/(part-1)/cards-carousel",
         "/(part-1)/garden-astronaut"
       ]
     },
@@ -129,6 +150,9 @@ export const routeTree = rootRoute
     },
     "/(part-1)/card-stacking": {
       "filePath": "(part-1)/card-stacking.tsx"
+    },
+    "/(part-1)/cards-carousel": {
+      "filePath": "(part-1)/cards-carousel.tsx"
     },
     "/(part-1)/garden-astronaut": {
       "filePath": "(part-1)/garden-astronaut.tsx"

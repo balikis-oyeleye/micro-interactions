@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const links = ["/garden-astronaut", "/card-stacking"];
+  const links = ["/garden-astronaut", "/card-stacking", "/cards-carousel"];
 
   return (
     <main className="max-w-4xl mx-auto p-6">
