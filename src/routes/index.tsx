@@ -33,7 +33,7 @@ function Index() {
             className="bg-white border border-gray-200 rounded-2xl shadow-sm p-4 hover:shadow-md transition-shadow hover:bg-purple-50 group"
           >
             <h2 className="text-lg font-medium text-gray-800 group-hover:text-purple-600 transition-colors">
-              {TextHelper("hello").removeSpecialChars().capitalize().getText()}
+              {TextHelper(link).removeSpecialChars().capitalize().getText()}
             </h2>
             <p className="mt-2 text-sm text-gray-500 group-hover:text-purple-400 transition-colors">
               View interaction <FaArrowRight className="inline" />
